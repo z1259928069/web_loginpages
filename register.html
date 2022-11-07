@@ -3,106 +3,215 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./static/plugins/bootstrap-3.4.1-dist/css/bootstrap.css">
     <style>
-        body {
-            background-color: beige;
-            /*背景颜色*/
+        /*css样式来自https://blog.csdn.net/nihaio25/article/details/120400432*/
+        * {
+            margin: 0;
+            padding: 0;
         }
 
-        .container {
-            box-sizing: content-box;
-            /*默认的 content 作为盒子大小*/
-            width: 800px;
-            /*宽度*/
-            height: 500px;
-            /*高度*/
-            border: 10px ridge lightgray;
-            /*边框 10px 桥梁 浅灰色*/
-            margin: 50px auto;
-            /*外边距 上下50px 左右自动居中*/
-            background-color: white;
-            /*背景颜色*/
+        a {
+            text-decoration: none;
         }
 
-        .child {
-            border: 1px solid red;
-            /*边框 1px 实线 红色*/
-            box-sizing: border-box;
-            /*边框作为盒子大小*/
-            height: 250px;
-            /*高度*/
-            border-color: rgba(0, 0, 0, 0);
-            /*边框颜色 完全透明*/
-        }
-
-        .center {
-            margin: 0px auto;
-            /*外边距 上下0px 左右自动居中*/
-            width: 400px;
-            /*宽度*/
-            font-family: '楷体';
-            /*字体类型*/
-            color: gray;
-            /*字体颜色*/
-        }
-        .center table tr {
-            height: 50px;
-            /*高度*/
-        }
-        input[type="text"],
-        input[type="password"] {
-            border: 1px solid lightgray;
-            /*边框 1px 实线 浅灰色*/
-            width: 180px;
-            /*宽度*/
-            height: 30px;
-            /*高度*/
-            border-radius: 15px;
-            /*边框圆角*/
-            padding: 5px;
-            /*填充*/
-            box-sizing: border-box;
-            /*边框作为盒子大小*/
-        }
-        input:focus {
-            /*输入框获取焦点时*/
+        input,
+        button {
+            background: transparent;
+            border: 0;
             outline: none;
-            /*获取焦点时不显示轮廓*/
-            border: 1px solid lightskyblue;
-            /*边框 1px 实线 浅天蓝色*/
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(#141e30, #243b55);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #03e9f4;
+        }
+
+        .loginBox {
+            width: 400px;
+            height: 450px;
+            background-color: #0c1622;
+            margin: 100px auto;
+            border-radius: 10px;
+            box-shadow: 0 15px 25px 0 rgba(0, 0, 0, .6);
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        h2 {
+            text-align: center;
+            color: aliceblue;
+            margin-bottom: 30px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .item {
+            height: 45px;
+            border-bottom: 1px solid #fff;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .item input {
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            padding-top: 20px;
+            box-sizing: border-box;
+        }
+
+        .item input:focus+label,
+        .item input:valid+label {
+            top: 0px;
+            font-size: 2px;
+        }
+
+        .item label {
+            position: absolute;
+            left: 0;
+            top: 12px;
+            transition: all 0.5s linear;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            color: #03e9f4;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .btn:hover {
+            border-radius: 5px;
+            color: #fff;
+            background: #03e9f4;
+            box-shadow: 0 0 5px 0 #03e9f4,
+                0 0 25px 0 #03e9f4,
+                0 0 50px 0 #03e9f4,
+                0 0 100px 0 #03e9f4;
+            transition: all 1s linear;
+        }
+
+        .btn>span {
+            position: absolute;
+        }
+
+        .btn>span:nth-child(1) {
+            width: 100%;
+            height: 2px;
+            background: -webkit-linear-gradient(left, transparent, #03e9f4);
+            left: -100%;
+            top: 0px;
+            animation: line1 1s linear infinite;
+        }
+
+        @keyframes line1 {
+
+            50%,
+            100% {
+                left: 100%;
+            }
+        }
+
+        .btn>span:nth-child(2) {
+            width: 2px;
+            height: 100%;
+            background: -webkit-linear-gradient(top, transparent, #03e9f4);
+            right: 0px;
+            top: -100%;
+            animation: line2 1s 0.25s linear infinite;
+        }
+
+        @keyframes line2 {
+
+            50%,
+            100% {
+                top: 100%;
+            }
+        }
+
+        .btn>span:nth-child(3) {
+            width: 100%;
+            height: 2px;
+            background: -webkit-linear-gradient(left, #03e9f4, transparent);
+            left: 100%;
+            bottom: 0px;
+            animation: line3 1s 0.75s linear infinite;
+        }
+
+        @keyframes line3 {
+
+            50%,
+            100% {
+                left: -100%;
+            }
+        }
+
+        .btn>span:nth-child(4) {
+            width: 2px;
+            height: 100%;
+            background: -webkit-linear-gradient(top, transparent, #03e9f4);
+            left: 0px;
+            top: 100%;
+            animation: line4 1s 1s linear infinite;
+        }
+
+        @keyframes line4 {
+
+            50%,
+            100% {
+                top: -100%;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="child center">
+    <div class="loginBox">
+        <h2>login</h2>
+         
+            <div class="item">
+                <input type="text" v-model="username" id="username" required>
+                <label for="">userName</label>
+            </div>
+             
+            
+            <div class="item">
+                <input type="text"   id="name" required>
+                <label for="">name(不允许重复)</label>
+            </div>
+            <div class="item">
+                <input type="password" id="pwd" required>
+                <label for="">password</label>
+            </div>
 
-
-        <table border="0" align="center">
-            <tr>
-                <td>用户名</td>
-                <td><input type="text" id="username" placeholder="请输入用户名"></td>
-            </tr>
-            <tr>
-                <td>昵称</td>
-                <td><input type="text" id="name" placeholder="请输入姓 名"></Gu Yongtd>
-            </tr>
-            <tr>
-                <td>密码</td>
-                <td><input id="pwd" type="password" placeholder="请输入密 码"></td>
-            </tr>
-            <tr>
-                <td colspan="2" style=" align : center">
-                    <button class="btn " id="Regist">用户注册</button>
-                    <button class="btn "  ><a style="text-decoration:none"  href="./index.html">返回</a> </button>
-                </td>
-            </tr>
-        </table>
+            <button class="btn" id="Regist" style="float: left;">注册
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+             
+             
+            <button class=" btn">
+                <a href="./index.html"  >
+                    返回
+                </a>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+         
     </div>
-
     <script>
 
         let btnRegist = document.querySelector("#Regist")
@@ -131,10 +240,10 @@
                     //是一个对象(json格式)
                     // 判断name是否重复1
                     let flag = checkName(registerName, data)
-                  
-                    if (flag==false) 
+                    console.log(registerName)
+                    if (flag==true) 
                     {alert("该用户名存在，重新输入")}
-                    if (flag == true) {
+                    if (flag == false) {
                         register(registerName, username, password)
                         alert("注册成功，即将跳转到登陆界面")
                         setTimeout(() => {
@@ -143,24 +252,26 @@
                         window.location.href = "./index.html"
 
                     }
-                    // console.log(`success: ${data}`);
                 })
                 .catch(error => { console.log(`error: ${error}`); });
         }
         function checkName(usname, data) {
-            console.log("开始查询姓名")
-            flag = false
+            console.log(data)
+            console.log("开始查询姓名"+usname)
+            let flag1 = false
             for (var i = 0, l = data.length; i < l; i++) {
                 {
                     // console.log(data[i].name)//遍历用data[i][key]， 取值用data[i].name
                     if (data[i].name == usname) {
-                        flag = true;
+                        console.log("查询到相同name用户")
+                        flag1 = true;
                         break;
+                         
                     }
                 }
             }
-            console.log("flag:" + flag)
-            return flag
+            console.log("flag:" + flag1)
+            return flag1
         }
         function register(registerName, username, pwd) {
             const myHeaders = new Headers()
